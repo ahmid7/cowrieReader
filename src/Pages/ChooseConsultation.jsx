@@ -30,7 +30,8 @@ const imageSlide = useRef();
       width:"100%"
     },{
       width:"0%",
-      duration:4,
+      duration:2,
+      ease: "power2.out"
     })
   },[])
 
