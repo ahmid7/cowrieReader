@@ -25,7 +25,7 @@ const ChooseConsultation = () => {
 
   function click(){
     setTimeout(() => {
-      navigate('/result') 
+      navigate('/result')
     },3000)
     setButtonClick(true)
   }

@@ -16,7 +16,7 @@ const ConsultationButton = (props) => {
 
         <div className={`w-[95px] h-[95px] lg:w-[105px] lg:h-[105px] design-border-outer-green flex-center rounded-full border-green ${props.buttonValue.green === "Consulting" ? 'w-[95px] h-[95px] lg:w-[115px] lg:h-[115px]' : ""}`} onClick = {() => {props.click()}}>
             <div className={`bg-dark-blue w-[83px] h-[83px] lg:w-[92px] lg:h-[92px] rounded-full flex-center ${props.buttonValue.green === "Consulting" ? 'w-[90px] h-[90px]  lg:w-[102px] lg:h-[102px]' : ""}`}>
-                <div className={`w-16 h-16 lg:w-[70px] lg:h-[70px] design-border-inner-green rounded-full flex-center font-normal text-sm text-green border-green ${props.buttonValue.green === "Consulting" ? 'w-[70px] h-[70px] text-[0.7rem] lg:text-xs lg:w-[85px] lg:h-[85px]' : ""}`}>
+                <div className={`w-16 h-16 lg:w-[70px] lg:h-[70px] design-border-inner-green rounded-full flex-center font-normal text-sm text-green border-green ${props.buttonValue.green === "Consulting" ? 'w-[65px] h-[65px] text-[0.7rem] lg:text-xs lg:w-[85px] lg:h-[85px]' : ""}`}>
                     <div className={`bg-dark-blue w-[60px] h-[60px] lg:w-[65px] lg:h-[65px] flex-center rounded-full flex-center ${props.buttonValue.green === "Consulting" ? 'w-[72px] h-[72px] text-[0.7rem] lg:text-xs lg:w-[81px] lg:h-[81px]' : ""}`}>
                         {props.buttonValue.green}
                     </div>

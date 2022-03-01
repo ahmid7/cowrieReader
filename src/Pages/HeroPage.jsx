@@ -18,7 +18,7 @@ const HeroPage = () => {
             </div>
 
             <div className=" w-20 h-20 xl:w-24 xl:h-24 design-border-outer-green flex-center rounded-full mt-12 mouse-hover outline-none focused:outline-none" onClick={() => {navigate('consult')}}>
-                <div className="bg-dark-blue w-[75px] h-[75px] xl:w-[90px] xl:h-[90px] flex-center rounded-full ">
+                <div className="bg-dark-blue w-[75px] h-[75px] xl:w-[85px] xl:h-[85px] flex-center rounded-full ">
                     <div className="w-14 h-14 xl:w-16 xl:h-16 design-border-inner-green rounded-full flex-center font-semibold text-sm text-green mouse-hover outline-none">
                         <div className="bg-dark-blue flex-center rounded-full w-[54px] h-[54px] xl:w-[60px] xl:h-[60px]">
                             Start
