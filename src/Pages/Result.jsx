@@ -4,11 +4,14 @@ import ConsultationButton from "../Component/ConsultationButton"
 import { useNavigate } from "react-router-dom"
 import { gsap } from "gsap"
 import { useEffect,useRef } from "react"
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const Result = () => {
-
   const navigate = useNavigate();
   const imageSlider = useRef()
+  const volumeShow = useRef()
 
   function click(){
     navigate('/consult')
@@ -35,29 +38,32 @@ const Result = () => {
       width:"0%",
       duration:2,
       ease:"power2.out"
-    })
+    });
+    gsap.to()
+    AOS.init();
+    AOS.refresh();
   }, [])
   return (
     <div className="bg-dark-blue">
       <div className="bg-dark-blue container mx-auto pb-4 height-screen text-white px-8 lg:px-16 xl:px-20">
           <Header/>
-          <div className="bg-darker-blue flex-col md:flex-row flex">
+          <div className="bg-darker-blue flex-col md:flex-row flex overflow-hidden">
               <div className="w-full md:w-[250px] lg:w-[250px] xl:w-[320px] relative">
                   <img className="w-full h-[420px] md:h-[450px] xl:h-[550px] object-fit" src="./images/CowrieResult.webp" alt="cowrie-image"/>
                   <div className ="h-[420px] bg-dark-blue md:h-[450px] xl:h-[550px] absolute top-0 right-0" ref={imageSlider}></div>
               </div>
               <div className="font-normal text-sm lg:text-sm xl:text-base w-full md:w-[60%]  xl:w-[60%] px-3 md:px-0 pt-4 md:pt-0 md:ml-5 lg:ml-10">
-                  <h2 className="py-4 xl:py-6 text-lg md:text-base xl:text-lg">The result</h2>
-                  <p className="pb-4 md:pb-3 xl:pb-5 leading-6 ">
+                  <h2 className="py-4 xl:py-6 text-lg md:text-base xl:text-lg" data-aos="fade-down" data-aos-delay="700" data-aos-duration='2000'>The result</h2>
+                  <p className="pb-4 md:pb-3 xl:pb-5 leading-6 " data-aos="fade-down" data-aos-delay="700" data-aos-duration='2000'>
                       Amet sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. a dolor do amet sint. Velit officia consequat duis enim
                   </p>
-                  <p className="pb-4 md:pb-3 xl:pb-5  leading-6 ">
+                  <p className="pb-4 md:pb-3 xl:pb-5  leading-6" data-aos="fade-down" data-aos-delay="700" data-aos-duration='2000'>
                       Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
                   </p>
-                  <p className=" leading-6 ">
+                  <p className=" leading-6" data-aos="fade-down" data-aos-delay="700" data-aos-duration='2000'>
                   Amet sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
                   </p>
-                  <div className="bg-[#161C27]  px-2 py-2 xl:py-3 w-[70%] md:w-[40%] rounded-md my-10 md:mt-12 xl:mt-14">
+                  <div className="bg-[#161C27]  px-2 py-2 xl:py-3 w-[70%] md:w-[40%] rounded-md my-10 md:mt-12 xl:mt-14" ref={volumeShow}>
                       <div className="small-border flex justify-between items-center px-2 py-2 xl:py-3 rounded-md text-xs lg:text-sm xl:text-base">
                           <p>Use audio note</p>
                           <Volume/>
