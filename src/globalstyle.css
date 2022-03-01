@@ -1,0 +1,56 @@
+*{
+    font-family:euclidCircularA
+}
+
+@font-face{
+    font-family: euclidCircularA;
+    src: url(./font/EuclidCircularA-Bold.ttf);
+    font-weight: 700;
+}
+@font-face{
+    font-family: euclidCircularA;
+    src: url(./font/EuclidCircularA-Regular.ttf);
+    font-weight: 400;
+}
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.outer-circle-gradient{
+    background: radial-gradient(72.22% 72.22% at 81.25% 77.78%, #253041 0%, rgba(13, 17, 23, 0) 100%)
+}
+
+.small-border{
+    border:1px solid gray
+}
+.mouse-hover{
+    cursor: pointer;
+}
+.absolute-center{
+   top:50%;
+   left:50%;
+   transform: translateY(-50%) translateX(-50%);
+}
+.height-screen{
+    min-height: 100vh;
+}
+.design-border-outer-white{
+    background-image: linear-gradient(0deg, #161A20, #F8F8F8);
+}
+.design-border-inner-white{
+    background-image: linear-gradient(0deg, #F8F8F8,#161A20);
+}
+.design-border-outer-red{
+    background-image: linear-gradient(0deg, #2C0F30, #BC0002);
+}
+.design-border-inner-red{
+    background-image: linear-gradient(0deg, #BC0002,#2C0F30);
+}
+.design-border-outer-green{
+    background-image: linear-gradient(0deg, #0C2325, #01BB58);
+}
+.design-border-inner-green{
+    background-image: linear-gradient(0deg, #01BB58,#0C2325);
+}
