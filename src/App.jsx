@@ -3,7 +3,7 @@ import ChooseConsultation from "./Pages/ChooseConsultation"
 import Result from "./Pages/Result"
 import "./globalstyle.css"
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -11,13 +11,13 @@ import {
 function App() {
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path='/' element={<HeroPage/>}/>
         <Route path='/consult' element={<ChooseConsultation/>}/>
         <Route path='/result' element={<Result/>}/>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
