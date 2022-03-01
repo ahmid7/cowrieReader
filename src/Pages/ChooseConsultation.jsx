@@ -31,6 +31,10 @@ const imageSlide = useRef();
     },{
       width:"0%",
       duration:2,
+<<<<<<< HEAD
+=======
+      ease: "power2.out"
+>>>>>>> 00b99e7cd2dce266ee6eb8704d44b9484dc2c7f1
     })
   },[])
 
