@@ -1,10 +1,13 @@
-import React from 'react'
 import Header from '../Component/Header'
 import ConsultationButton from '../Component/ConsultationButton'
 import { useNavigate } from 'react-router-dom'
-import { useState,useEffect } from 'react'
+import { useRef, useState,useEffect } from 'react'
+import { gsap } from 'gsap'
 
 const ChooseConsultation = () => {
+
+const imageSlide = useRef();
+
   const buttonValue={
     'white':'Retake',
     'green':'Choose',
@@ -22,6 +25,14 @@ const ChooseConsultation = () => {
 
   // 
   const [buttonclick, setButtonClick] = useState(false)
+  useEffect(() => {
+    gsap.fromTo(imageSlide.current,{
+      width:"100%"
+    },{
+      width:"0%",
+      duration:4,
+    })
+  },[])
 
   function click(){
     setTimeout(() => {
@@ -45,6 +56,7 @@ const ChooseConsultation = () => {
             <Header/>
             <div className="relative">
               <img className='w-full h-[350px] xl:h-[500px] object-fill' src='./images/Cowrie.webp' alt="cowry-image"/>
+              <div className="absolute bg-dark-blue h-[350px] xl:h-[500px] top-0 right-0 " ref={imageSlide}></div>
               {
                 buttonclick && 
                 <p className={`absolute absolute-center`}>Consulting ...</p> 
