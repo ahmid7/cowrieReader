@@ -1,79 +1,67 @@
 import Header from '../Component/Header'
-import ConsultationButton from '../Component/ConsultationButton'
+import WhiteButton from '../Component/WhiteButton'
+import RedButton from '../Component/RedButton'
+import GreenButton from '../Component/GreenButton'
 import { useNavigate } from 'react-router-dom'
-import { useRef, useState,useEffect } from 'react'
+import { useRef, useState,useEffect, useLayoutEffect } from 'react'
 import { gsap } from 'gsap'
 
 const ChooseConsultation = () => {
-
-const imageSlide = useRef();
-
-  const buttonValue={
-    'white':'Retake',
-    'green':'Choose',
-    'red':'Close'
-  }
-
-  const buttonValue2={
-    'white':'Retake',
-    'green':'Consulting',
-    'red':'Close'
-  }
-
-  // set route
+  const imageSlide = useRef();
   const navigate = useNavigate();
+  const [buttonGreenclick, setButtonGreenClick] = useState(false)
 
-  // 
-  const [buttonclick, setButtonClick] = useState(false)
-  useEffect(() => {
+  function updateButtonGreenClick(){
+    setButtonGreenClick(true)
+  }
+
+  useLayoutEffect(() => {
     gsap.fromTo(imageSlide.current,{
       width:"100%"
     },{
       width:"0%",
       duration:2,
-<<<<<<< HEAD
-=======
       ease: "power2.out"
->>>>>>> 00b99e7cd2dce266ee6eb8704d44b9484dc2c7f1
     })
   },[])
 
-  function click(){
-    setTimeout(() => {
-      navigate('/result')
-    },3000)
-    setButtonClick(true)
-  }
-
-  const clickRoute = {
-    whiteButton: function(){
-      return navigate('/consult')
+  const handleButton ={
+    WhiteButton: function(){
+      return setTimeout(() => {navigate('/consult')},2000)
     },
-    redButton: function(){
+    RedButton: function(){
       return navigate('/')
+    },
+    GreenButton:function(){
+      setTimeout(() => {navigate('/result')},2000)
     }
   }
+
   return (
     <div className="bg-dark-blue">
-      <div className="lg:px-12 container mx-auto px-8 height-screen  lg:pb-4  text-white">
+      <div className="lg:px-12 container mx-auto px-8 height-screen lg:pb-4 text-white">
+
         <div>
             <Header/>
             <div className="relative">
               <img className='w-full h-[350px] xl:h-[500px] object-fill' src='./images/Cowrie.webp' alt="cowry-image"/>
               <div className="absolute bg-dark-blue h-[350px] xl:h-[500px] top-0 right-0 " ref={imageSlide}></div>
               {
-                buttonclick && 
-                <p className={`absolute absolute-center`}>Consulting ...</p> 
-              }
-              {
-                !buttonclick && 
-                <p className={`absolute absolute-center hidden`}>Consulting ...</p>
+                buttonGreenclick && 
+                <p className={`absolute absolute-center block`}>Consulting..</p>
               }
             </div>
         </div>
 
-        <ConsultationButton click={click} clickRoute={clickRoute} buttonValue={ buttonclick ? buttonValue2 : buttonValue }/>
-    </div>
+        <div className="text-white flex-center gap-x-4 md:gap-x-6 font-normal mt-10 md:mt-8">
+          <WhiteButton buttonValue ='Retake' handleButton = {handleButton.WhiteButton}/>
+          <div onClick={updateButtonGreenClick}>
+            <GreenButton buttonValue ='Choose' handleButton ={handleButton.GreenButton}/>
+          </div>
+          <RedButton buttonValue='Close' handleButton = {handleButton.RedButton}/>
+        </div>
+
+      </div>
     </div>
   )
 }

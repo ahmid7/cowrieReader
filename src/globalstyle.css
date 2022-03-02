@@ -54,3 +54,29 @@
 .design-border-inner-green{
     background-image: linear-gradient(0deg, #01BB58,#0C2325);
 }
+
+.animate-spin-back{
+    animation: spinback 2s linear infinite;
+}
+
+@keyframes spinback{
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.animate-spins{
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin{
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
