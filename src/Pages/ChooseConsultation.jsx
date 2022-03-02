@@ -20,6 +20,7 @@ const ChooseConsultation = () => {
       width:"100%"
     },{
       width:"0%",
+      delay:1,
       duration:2,
       ease: "power2.out"
     })
@@ -33,7 +34,8 @@ const ChooseConsultation = () => {
       return navigate('/')
     },
     GreenButton:function(){
-      setTimeout(() => {navigate('/result')},2000)
+      setTimeout(() => {navigate('/result')
+      },2000)
     }
   }
   const buttonGreenValue = buttonGreenclick ? 'Consulting' : 'Choose'

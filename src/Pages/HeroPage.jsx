@@ -18,7 +18,6 @@ const HeroPage = () => {
     setButtonClick(true)
   }
 
-  var tl = gsap.timeline()
 
   useLayoutEffect(() => {
     gsap.fromTo(startButton.current, {
@@ -45,7 +44,6 @@ const HeroPage = () => {
     },{
         width:'0%',
         duration:3,
-        delay:2
     }) 
 
     gsap.fromTo(secondball.current,{
