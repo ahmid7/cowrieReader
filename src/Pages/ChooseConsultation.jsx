@@ -36,6 +36,7 @@ const ChooseConsultation = () => {
       setTimeout(() => {navigate('/result')},2000)
     }
   }
+  const buttonGreenValue = buttonGreenclick ? 'Consulting' : 'Choose'
 
   return (
     <div className="bg-dark-blue">
@@ -53,10 +54,10 @@ const ChooseConsultation = () => {
             </div>
         </div>
 
-        <div className="text-white flex-center gap-x-4 md:gap-x-6 font-normal mt-10 md:mt-8">
+        <div className="text-white flex-center gap-x-4 md:gap-x-6 font-normal mt-10 md:mt-8 outline-none">
           <WhiteButton buttonValue ='Retake' handleButton = {handleButton.WhiteButton}/>
-          <div onClick={updateButtonGreenClick}>
-            <GreenButton buttonValue ='Choose' handleButton ={handleButton.GreenButton}/>
+          <div className="outline-none bg-dark-blue " onClick={updateButtonGreenClick}>
+            <GreenButton buttonValue ={buttonGreenValue} handleButton ={handleButton.GreenButton}/>
           </div>
           <RedButton buttonValue='Close' handleButton = {handleButton.RedButton}/>
         </div>
