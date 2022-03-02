@@ -27,7 +27,7 @@ const HeroPage = () => {
         scale: 1,
         duration: 2,
         ease:'power2.out',
-        delay:5,
+        delay:3,
         visibility:"visible",
     })
 
