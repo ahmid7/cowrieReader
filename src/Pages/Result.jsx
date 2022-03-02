@@ -24,7 +24,7 @@ const Result = () => {
 
   const handleButton ={
     WhiteButton: function(){
-      return setTimeout(() => {navigate('/')},2000)
+      return setTimeout(() => {navigate('/result')},2000)
     },
     RedButton: function(){
       return navigate('/')
