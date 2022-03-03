@@ -55,9 +55,13 @@
     background-image: linear-gradient(0deg, #01BB58,#0C2325);
 }
 
-.animate-spin-back{
-    animation: spinback 2s linear infinite;
+.animate-spins{
+    animation: spin 2s linear 1;
 }
+.animate-spin-back{
+    animation: spinback 2s linear 1;
+}
+
 
 @keyframes spinback{
     from {
@@ -66,10 +70,6 @@
     to {
         transform: rotate(0deg);
     }
-}
-
-.animate-spins{
-    animation: spin 2s linear infinite;
 }
 
 @keyframes spin{
