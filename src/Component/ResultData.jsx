@@ -1,10 +1,13 @@
 import React,{ useEffect,useState } from 'react'
 
-const ResultData = ({ generateResult }) => {
+const ResultData = ({ generateResult, handleRandomNo }) => {
   const [ datas,setDatas ] = useState([])
 
   useEffect( () => {
-    setDatas(generateResult())
+    // setDatas(generateResult())
+    let arrValue = generateResult()
+    setDatas(arrValue[0])
+    handleRandomNo(arrValue[1])
   },[])
 
   return (

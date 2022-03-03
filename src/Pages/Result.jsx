@@ -18,6 +18,10 @@ const Result = () => {
   const [volumeClick,setVolumeClicked] = useState(false)
   const [ RandomNo, setRandomNo ]  = useState()
 
+  function handleRandomNo(e){
+    setRandomNo(e)
+  }
+
   function updateVolumeClick(){
     setVolumeClicked(!volumeClick)
   }
@@ -26,7 +30,7 @@ const Result = () => {
     const generateRandomArrayNo = Math.floor(Math.random() * ResultDataArray.length)
     const datas = ResultDataArray[generateRandomArrayNo]
     const value = generateRandomArrayNo
-    return datas
+    return [datas, value]
   }
 
   function updateVolume(){
@@ -39,9 +43,16 @@ const Result = () => {
 
   function speech(){
     let voice = texttospeech.getVoices()
-    let utterThis = new SpeechSynthesisUtterance('odunayo')
+    const word = ResultDataArray[RandomNo].join('\n')
+    console.log(word)
+    let utterThis = new SpeechSynthesisUtterance(word)
     utterThis.voice = voice[0]
-    texttospeech.speak(utterThis)
+    // texttospeech.speak(utterThis)
+    if(!volumeClick){
+      texttospeech.speak(utterThis)
+    }else{
+      texttospeech.cancel()
+    }
   }
 
   const handleButton ={
@@ -94,7 +105,7 @@ const Result = () => {
 
               <div className="font-normal text-sm lg:text-sm xl:text-base w-full md:w-[62%]  xl:w-[60%] px-3 md:px-0 pt-4 md:pt-0 md:ml-5 lg:ml-10 ">
                   <h2 className="py-4 xl:py-6 text-lg md:text-base xl:text-lg" data-aos="fade-left" data-aos-delay="700" data-aos-duration='2000'>The result</h2>
-                  <ResultData generateResult = { generateResult }/>
+                  <ResultData generateResult = { generateResult } handleRandomNo= { handleRandomNo }/>
 
                   <div className="bg-[#161C27] px-2 py-2 xl:py-3 w-[70%] md:w-[40%] rounded-md my-10 md:mt-12 xl:mt-14" onClick= { updateVolume }>
                       <div className="small-border flex justify-between items-center px-2 py-2 xl:py-3 rounded-md text-xs lg:text-sm xl:text-base">
