@@ -2,33 +2,47 @@ import Header from "../Component/Header"
 import WhiteButton from '../Component/WhiteButton'
 import RedButton from '../Component/RedButton'
 import GreenButton from '../Component/GreenButton'
+import { ResultDataArray } from "../Data"
+import ResultData from "../Component/ResultData"
 import { Volume } from "../Svgicon"
 import { useNavigate } from "react-router-dom"
-import { useLayoutEffect,useRef, useState } from "react"
+import { useLayoutEffect,useRef, useState,useCallback } from "react"
 import { gsap } from "gsap"
+import { useSpeechSynthesis } from 'react-speech-kit'
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { ResultData } from "../Component/Data"
 
 const Result = () => {
-  // generate a random no
-  const generateRandomArrayNo = Math.floor(Math.random() * ResultData.length)
-  // put the random no generated into a array to get a random result from a data
-  const datas = ResultData[generateRandomArrayNo]
-  
   const navigate = useNavigate();
   const imageSlider = useRef()
-  const volumeShow = useRef()
-
+  // const volumeShow = useRef()
   const [volumeClick,setVolumeClicked] = useState(false)
+  const { speak } = useSpeechSynthesis()
 
   function updateVolumeClick(){
     setVolumeClicked(!volumeClick)
   }
 
+  const generateResult = () => {
+    const generateRandomArrayNo = Math.floor(Math.random() * ResultDataArray.length)
+    const datas = ResultDataArray[generateRandomArrayNo]
+    return datas
+  }
+
+  // const value = 'i will need a whole lot of this to go on'
+
+  function updateVolume(){
+    // speak({ text:value })
+    updateVolumeClick()
+  }
+
+  // speech value
+  let texttospeech = speechSynthesis
+
+
   const handleButton ={
     WhiteButton: function(){
-      return setTimeout(() => {navigate('/result')},2000)
+      return setTimeout(() => {navigate('/')},2000)
     },
     RedButton: function(){
       return navigate('/')
@@ -48,71 +62,62 @@ const Result = () => {
       ease:"power2.out"
     });
 
-    gsap.to(volumeShow.current, {
-      display:'block',
-      delay:2,
-      ease:'power2.out'
-    });
-    
+    // gsap.to(volumeShow.current, {
+    //   display:'block',
+    //   delay:2,
+    //   ease:'power2.out'
+    // });    
+
     // aos initialization
     AOS.init({
       once:true
     });
 
     AOS.refresh();
+
+    // get a voicetype for speechtotext
+    let voice = texttospeech.getVoices()
+    console.log(voice)
   }, [])
   return (
     <div className="bg-dark-blue">
+
       <div className="bg-dark-blue container mx-auto pb-4 height-screen text-white px-8 lg:px-16 xl:px-20">
           <Header/>
           <div className="bg-darker-blue flex-col md:flex-row flex overflow-hidden">
-            
+
               <div className="w-full md:w-[250px] lg:w-[270px] xl:w-[320px] relative">
                   <img className="w-full h-[420px] md:h-[470px] xl:h-[550px] object-fit" src="./images/CowrieResult.webp" alt="cowrie-image"/>
                   <div className ="bg-darker-blue w-full h-full absolute bottom-0 right-0" ref={imageSlider}></div>
               </div>
+
               <div className="font-normal text-sm lg:text-sm xl:text-base w-full md:w-[62%]  xl:w-[60%] px-3 md:px-0 pt-4 md:pt-0 md:ml-5 lg:ml-10 ">
                   <h2 className="py-4 xl:py-6 text-lg md:text-base xl:text-lg" data-aos="fade-left" data-aos-delay="700" data-aos-duration='2000'>The result</h2>
+                  <ResultData generateResult = { generateResult }/>
 
-                  {/* aos isnot responsive so created two divs, one for 640 below screens and 640 above screens */}
-
-                  <div className="hidden md:flex flex-col gap-y-4 md:gap-y-3 xl:gap-y-5 overflow-hidden">
-                    {
-                      datas.map((data,index) => (
-                        <p key= {index} className="leading-6 overflow-hidden" data-aos="fade-down" data-aos-delay="1000" data-aos-duration='3000'>{data}</p>
-                      ))
-                    }
-                  </div>
-
-                  <div className="flex md:hidden flex-col gap-y-4 md:gap-y-3 xl:gap-y-5 overflow-hidden">
-                    {
-                      datas.map((data,index) => (
-                        <p key= {index} className="leading-6 overflow-hidden" data-aos="fade-down" data-aos-delay="800" data-aos-duration='3000'>{data}</p>
-                      ))
-                    }
-                  </div>
-                  
-                  <div className="bg-[#161C27] hidden px-2 py-2 xl:py-3 w-[70%] md:w-[40%] rounded-md my-10 md:mt-12 xl:mt-14" ref={volumeShow} onClick= { () => updateVolumeClick() }>
+                  <div className="bg-[#161C27] px-2 py-2 xl:py-3 w-[70%] md:w-[40%] rounded-md my-10 md:mt-12 xl:mt-14" onClick= { updateVolume }>
                       <div className="small-border flex justify-between items-center px-2 py-2 xl:py-3 rounded-md text-xs lg:text-sm xl:text-base">
                           <p>Use audio note</p>
-                          <div className="relative ">
 
+                          <div className="relative ">
                             <Volume/>
                             <div className={`w-4 h-1 bg-[red] absolute skew-y-[-45deg] block top-3 left-0 ml-1 mb-3 ${volumeClick ? "hidden": "" }`}>
-
                             </div>
                           </div>
                       </div>
                   </div>
+
               </div>
+
           </div>
 
           <div className="text-white flex-center gap-x-4 md:gap-x-6 font-normal mt-10 md:mt-8">
-            <WhiteButton buttonValue ='Retake' handleButton = {handleButton.WhiteButton}/>
+            <WhiteButton  buttonValue ='Retake' handleButton = {handleButton.WhiteButton}/>
             <GreenButton buttonValue ='Restart' handleButton ={handleButton.GreenButton}/>
             <RedButton buttonValue='Close' handleButton = {handleButton.RedButton}/>
-        </div>
+          </div>
       </div>
+
     </div>
   )
 }

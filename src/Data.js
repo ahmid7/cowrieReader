@@ -1,5 +1,5 @@
 
-export const ResultData = [
+export const ResultDataArray = [
     [
         "Amet sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. a dolor do amet sint. Velit officia consequat duis enim",
         "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
