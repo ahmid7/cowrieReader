@@ -8,7 +8,6 @@ import { Volume } from "../Svgicon"
 import { useNavigate } from "react-router-dom"
 import { useLayoutEffect,useRef, useState,useCallback } from "react"
 import { gsap } from "gsap"
-import { useSpeechSynthesis } from 'react-speech-kit'
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -17,7 +16,7 @@ const Result = () => {
   const imageSlider = useRef()
   // const volumeShow = useRef()
   const [volumeClick,setVolumeClicked] = useState(false)
-  const { speak } = useSpeechSynthesis()
+  const [ RandomNo, setRandomNo ]  = useState()
 
   function updateVolumeClick(){
     setVolumeClicked(!volumeClick)
@@ -26,19 +25,24 @@ const Result = () => {
   const generateResult = () => {
     const generateRandomArrayNo = Math.floor(Math.random() * ResultDataArray.length)
     const datas = ResultDataArray[generateRandomArrayNo]
+    const value = generateRandomArrayNo
     return datas
   }
 
-  // const value = 'i will need a whole lot of this to go on'
-
   function updateVolume(){
-    // speak({ text:value })
     updateVolumeClick()
+    speech()
   }
 
   // speech value
   let texttospeech = speechSynthesis
 
+  function speech(){
+    let voice = texttospeech.getVoices()
+    let utterThis = new SpeechSynthesisUtterance('odunayo')
+    utterThis.voice = voice[0]
+    texttospeech.speak(utterThis)
+  }
 
   const handleButton ={
     WhiteButton: function(){
@@ -73,12 +77,9 @@ const Result = () => {
       once:true
     });
 
-    AOS.refresh();
-
-    // get a voicetype for speechtotext
-    let voice = texttospeech.getVoices()
-    console.log(voice)
+    AOS.refresh();    
   }, [])
+
   return (
     <div className="bg-dark-blue">
 

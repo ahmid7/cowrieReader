@@ -5,7 +5,6 @@ const ResultData = ({ generateResult }) => {
 
   useEffect( () => {
     setDatas(generateResult())
-    console.log("updating items")
   },[])
 
   return (
